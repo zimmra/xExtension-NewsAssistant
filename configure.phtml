@@ -49,23 +49,23 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<!-- make the input element to support input and select -->
+		<!-- Use select element for model selection -->
 		<label class="group-name" for="model"><a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-model" target="_blank"><?php echo _t('ext.field.model') . " (?)"; ?></a></label>
 		<div class="group-controls">
-			<input list="select-models" id="model" name="model" value="<?php echo htmlentities(FreshRSS_Context::$system_conf->model ?? 'gpt-3.5-turbo-16k'); ?>">
-			<datalist id="select-models">
-				<option value="gpt-4">
-				<option value="gpt-4-0613">
-				<option value="gpt-4-32k">
-				<option value="gpt-4-32k-0613">
-				<option value="gpt-3.5-turbo">
-				<option value="gpt-3.5-turbo-0613">
-				<option value="gpt-3.5-turbo-16k">
-				<option value="gpt-3.5-turbo-16k-0613">
-			</datalist>
+			<select id="model" name="model">
+				<option value="gpt-4-1106-preview" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-4-1106-preview' ? 'selected' : ''); ?>>gpt-4-1106-preview</option>
+				<option value="gpt-4" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-4' ? 'selected' : ''); ?>>gpt-4</option>
+				<option value="gpt-4-0613" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-4-0613' ? 'selected' : ''); ?>>gpt-4-0613</option>
+				<option value="gpt-4-32k" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-4-32k' ? 'selected' : ''); ?>>gpt-4-32k</option>
+				<option value="gpt-4-32k-0613" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-4-32k-0613' ? 'selected' : ''); ?>>gpt-4-32k-0613</option>
+				<option value="gpt-3.5-turbo" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-3.5-turbo' ? 'selected' : ''); ?>>gpt-3.5-turbo</option>
+				<option value="gpt-3.5-turbo-1106" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-3.5-turbo-1106' ? 'selected' : ''); ?>>gpt-3.5-turbo-1106</option>
+				<option value="gpt-3.5-turbo-0613" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-3.5-turbo-0613' ? 'selected' : ''); ?>>gpt-3.5-turbo-0613</option>
+				<option value="gpt-3.5-turbo-16k" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-3.5-turbo-16k' ? 'selected' : ''); ?>>gpt-3.5-turbo-16k</option>
+				<option value="gpt-3.5-turbo-16k-0613" <?php echo (FreshRSS_Context::$system_conf->model == 'gpt-3.5-turbo-16k-0613' ? 'selected' : ''); ?>>gpt-3.5-turbo-16k-0613</option>
+			</select>
 		</div>
 	</div>
-
 	<div class="form-group form-actions">
 		<div class="group-controls">
 			<button type="submit" class="btn btn-important"><?php echo _t('gen.action.submit'); ?></button>
