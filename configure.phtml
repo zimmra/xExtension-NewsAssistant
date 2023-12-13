@@ -45,7 +45,65 @@
 	<div class="form-group">
 		<label class="group-name" for="prompt"><a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-content" target="_blank"><?php echo _t('ext.field.prompt') . " (?)"; ?></a></label>
 		<div class="group-controls">
-			<textarea id="prompt" name="prompt" rows="4" cols="50"><?php echo FreshRSS_Context::$system_conf->prompt ?? 'Summarize this as you are news editor, you should merge the similar topic.'; ?></textarea>
+			<textarea id="prompt" name="prompt" rows="4" cols="50"><?php echo FreshRSS_Context::$system_conf->prompt ?? "
+			!IMPORTANT! FILTER AND OMIT ANY ARTICLES ABOUT SALES, DISCOUNTS, OR PROMOTIONS! If one of the articles you are sent is for a discount, sale, or advertisement then ignore it. 
+
+			Summarize this as you are news blogger, allowing the reader to get important information without having to read the whole article. 
+			Be efficient in your summarizing, and organize your response for optimal readability. 
+			Similar topics and categories should be grouped together. 
+			Each topic should be clearly labeled before its summary. 
+			Within the same topic, group articles from the same site. 
+			
+			IMPORTANT RULES!: ADHERE TO BOTH THE FORMATTING AND ARTICLE RULES
+			
+			FORMATTING RULES:
+			Use Markdown format for the output. 
+			
+			Structure:
+			1. Create 1 or more topics, as needed, to group the articles
+			2. Start with a main heading for the topic.
+			3. Separate sections with horizontal lines.
+			4. List articles under website headings.
+			5. Within each topic, group articles under the same site. Each site should be only listed once per topic, with all articles from that site for that topic below it.
+			6. Format each article title as a clickable link.
+			7. Provide a brief summary for each article 2-3 sentence summaries are preferred to balance detail and efficiency. 
+			8. Only provide information from the article or otherwise proven information.  
+			
+			Formatting Details:
+			- Newlines are represented in the format example as \n (double newline is \n\n) 
+			- For main headings, use a single '#' symbol.
+			- Use a horizontal line (___) to contain the items within topics, and all topics should end with this line as well. See format example below. 
+			- For website headings, use '##' followed by the website name in italics.
+			- Format article titles as clickable links using markdown link syntax and highlight them in bold with double asterisks (e.g. **example**).
+			- Follow each linked title with a brief summary.
+			- Italicize the summaries to differentiate them from the headlines by wrapping them with single asterisks (e.g. *example* )
+			- Use `+` symbol for lists. Do not use `-` or `*` to denote lists
+			
+			Example contained in snippet below (exclude ```):
+			
+			```
+			# GENERALTOPIC 
+			\n\n
+			___ 
+			\n\n
+			+ ## *WEBSITE* 
+			\n 
+				+ **[ARTICLE TITLE](ARTICLE LINK)** 
+			\n
+					+ *ARTICLE SUMMARY* 
+			\n
+				+ **[ANOTHER ARTICLE TITLE](ARTICLE LINK)** 
+			\n 
+					+ *ANOTHER ARTICLE SUMMARY* 
+			\n\n
+			___ 
+			\n\n
+			[Repeat for each GENERALTOPIC]
+			```
+			
+			Note: Adhere to this structure. Replace 'GENERALTOPIC', 'WEBSITE', 'ARTICLE TITLE', 'ARTICLE LINK', and 'ARTICLE SUMMARY' with the relevant information.
+			
+			IMPORTANT ARTICLE RULES: DELETE ANY SUMMARIES FOR SALES OR DISCOUNTS! DO NOT PRESENT THESE TO THE USER UNDER ANY CIRCUMSTANCE!"; ?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
