@@ -16,10 +16,10 @@
 	// 	return data;
 	// }
 
-    function stripMarkdown(markdown) {
-        // Simple regex to strip markdown syntax for raw preview
-        return markdown.replace(/[_*[\]()#>+-]/g, '');
-    }
+	function stripMarkdown(markdown) {
+		// Simple regex to strip markdown syntax for raw preview
+		return markdown.replace(/[_*[\]()#>+-]/g, '');
+	}
 
 	evtSource.onmessage = (event) => {
 		let markdownContent = event.data;
@@ -42,17 +42,17 @@
 	evtSource.addEventListener('done', () => {
 		console.log('Task done!');
 
-        // Convert rawMarkdown to HTML and display it
-        let formattedHtml = convertMarkdownToHtml(rawMarkdown);
-        summaryContentDiv.innerHTML = formattedHtml;
+		// Convert rawMarkdown to HTML and display it
+		let formattedHtml = convertMarkdownToHtml(rawMarkdown);
+		summaryContentDiv.innerHTML = formattedHtml;
 
 		evtSource.close();
 	});
 
 	function convertMarkdownToHtml(markdown) {
-        // Use a markdown-to-HTML library or write your converter
-        return marked(markdown); // Example using marked.js
-    }
+		// Use a markdown-to-HTML library or write your converter
+		return marked(markdown); // Example using marked.js
+	}
 
 	evtSource.addEventListener('empty', (event) => {
 		console.log('There is no news!');
