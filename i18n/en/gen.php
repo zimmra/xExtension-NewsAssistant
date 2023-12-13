@@ -8,9 +8,9 @@ return array(
 		'set_read' => 'Read',
 	),
 	'layout' => array(
-		'title' => 'The summary of Today'
+		'title' => 'News Summary - Powered by GPT'
 	),
 	'holder' => array(
-		'empty_content' => 'No news is a good news.'
+		'empty_content' => 'No content, make another selection or retry.'
 	)
 );
