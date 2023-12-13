@@ -46,14 +46,25 @@
 
 	evtSource.addEventListener('done', () => {
 		console.log('Task done!');
+		// Replace four spaces with a newline character in the entire rawMarkdown
+		rawMarkdown = rawMarkdown.replace(/(\S)\n/g, '$1 \n')
+								 .replace(/    /g, '\n\n')
+								 .replace(/   /g, '\n\n')
+								 .replace(/    \+/g, '\n\n    +')
+								 .replace(/ \+/g, '\n\n +')
+								 .replace(/___ ?#/g, '___\n\n#')
+								 .replace(/___ ?##/g, '___\n\n##')
+								 .replace(/___/g, '\n\n___')
+								 .replace(/---/g, '\n\n___')
+								 .replace(/\+ ##/g, '\n\n+ ##')
+								 .replace(/(?<!#)#(?!#)/g, ' \n#')
+								 .replace(/\*\+/g, '* \n+');
 
 		// Convert Markdown to HTML and display it
 		summaryContentDiv.innerHTML = converter.makeHtml(rawMarkdown);
 
 		evtSource.close();
 	});
-
-
 
 	evtSource.addEventListener('empty', (event) => {
 		console.log('There is no news!');
