@@ -42,7 +42,8 @@ class FreshExtension_assistant_Controller extends Minz_ActionController
 	public function summaryAction()
 	{
 		Minz_View::appendStyle($this->getFileUrl('style.css', 'css'));
-		Minz_View::appendScript($this->getFileUrl('script.js', 'js'));
+		Minz_View::prependScript($this->getFileUrl('marked.min.js', 'js'), false, true, false);
+		Minz_View::appendScript($this->getFileUrl('script.js', 'js'), false, true, false);
 	}
 
 	private function _echoData(string $data, string $event_name = '')
