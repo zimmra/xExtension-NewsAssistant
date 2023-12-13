@@ -9,6 +9,11 @@
 	const evtSource = new EventSource(`${pathname}?c=assistant&a=stream&cat_id=${urlParams.get('cat_id')}&state=${urlParams.get('state')}`);
 	let displayText = '';
 	let rawMarkdown = '';
+	var converter = new showdown.Converter();;
+	converter.setOption('simpleLineBreaks', true);
+	// converter.setOption('smartIndentationFix', true);
+	converter.setOption('noHeaderId', true);
+	converter.setOption('disableForced4SpacesIndentedSublists', true);
 
 	// function dealWithEventData(data) {
 	// 	if (data == null) return ' ';
@@ -42,17 +47,13 @@
 	evtSource.addEventListener('done', () => {
 		console.log('Task done!');
 
-		// Convert rawMarkdown to HTML and display it
-		let formattedHtml = convertMarkdownToHtml(rawMarkdown);
-		summaryContentDiv.innerHTML = formattedHtml;
+		// Convert Markdown to HTML and display it
+		summaryContentDiv.innerHTML = converter.makeHtml(rawMarkdown);
 
 		evtSource.close();
 	});
 
-	function convertMarkdownToHtml(markdown) {
-		// Use a markdown-to-HTML library or write your converter
-		return marked(markdown); // Example using marked.js
-	}
+
 
 	evtSource.addEventListener('empty', (event) => {
 		console.log('There is no news!');
